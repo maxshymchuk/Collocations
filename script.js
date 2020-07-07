@@ -1,8 +1,18 @@
 const connector = new Connector();
 
+connector.init();
+
+const timer = setInterval(() => {
+    connector.loaded && disablePreloader();
+}, 2000);
+
+function disablePreloader() {
+    document.getElementById('preloader').visibility = 'hidden';
+    clearInterval(timer);
+}
+
 window.onload = () => {
     document.getElementById('update').onclick = () => {
-        connector.loadWords();
         alert(JSON.stringify(connector.response));
     }
 }

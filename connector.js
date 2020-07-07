@@ -1,16 +1,18 @@
 class Connector {
   constructor() {
+    this.loaded = false;
     this.connector = new XMLHttpRequest();
     this.connector.onload = () => {
       if (this.connector.status != 200) {
         alert('Error');
       } else {
         this.response = this.connector.response;
+        this.loaded = true;
       }
     }
   }
 
-  loadWords() {
+  init() {
     this.connector.open("GET", 'words.txt');
     this.connector.send();
   }
