@@ -13,8 +13,7 @@ function disablePreloader() {
 
 window.onload = () => {
     document.getElementById('update').onclick = () => {
-        //alert(JSON.stringify(connector.response));
-        console.log(connector.words)
+        console.log(connector.random());
     }
 }
 

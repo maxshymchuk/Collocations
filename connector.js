@@ -29,8 +29,11 @@ class Connector {
       req.send();
     }
   }
-}
 
-function a() {
-  alert('asdasd')
+  random() {
+    if (this.words) {
+      const list = this.words.toArray();
+      console.log(list);
+    }
+  }
 }
