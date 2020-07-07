@@ -4,10 +4,10 @@ connector.init();
 
 const timer = setInterval(() => {
     connector.loaded && disablePreloader();
-}, 2000);
+}, 500);
 
 function disablePreloader() {
-    document.getElementById('preloader').visibility = 'hidden';
+    document.getElementById('preloader').style.visibility = 'hidden';
     clearInterval(timer);
 }
 
