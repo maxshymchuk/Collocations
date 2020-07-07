@@ -7,7 +7,7 @@ const timer = setInterval(() => {
 }, 500);
 
 function disablePreloader() {
-    document.getElementById('preloader').style.visibility = 'hidden';
+    document.getElementById('preloader').classList.add('invisible');
     clearInterval(timer);
 }
 

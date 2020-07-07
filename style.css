@@ -22,5 +22,10 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #FFF;
-  transition: visibility 1s;
+  transition: 1s;
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
 }
