@@ -32,7 +32,7 @@ class Connector {
 
   random() {
     if (this.words) {
-      const list = this.words[0];
+      const list = this.words.split('\n');
       console.log(list);
     }
   }
