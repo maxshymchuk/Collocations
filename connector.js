@@ -15,6 +15,12 @@ class Connector {
   init() {
     this.connector.open("GET", 'words.txt');
     this.connector.send();
+    const timer = setInterval(() => {
+      if (this.response) {
+        this.words = this.response;
+        clearInterval(timer);
+      }
+    }, 100);
   }
 
   getWord(word) {
