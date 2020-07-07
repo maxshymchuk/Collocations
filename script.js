@@ -17,6 +17,10 @@ window.onload = () => {
     }
 }
 
+function rand(a, b) {
+    return Math.floor(Math.random() * b) + a;
+}
+
 function getDictionaryUrl(word, token = tokens[0]) {
     return `https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=${token}&lang=ru-ru&text=${word}`;
 }
