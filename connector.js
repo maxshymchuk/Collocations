@@ -1,4 +1,4 @@
-export default class Connector {
+class Connector {
   constructor() {
     this.connector = new XMLHttpRequest();
     this.connector.onload = () => {

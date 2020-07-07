@@ -1,6 +1,3 @@
-import './connector';
-import * as config from './config';
-
 const connector = new Connector();
 
 window.onload = () => {
