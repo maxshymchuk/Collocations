@@ -9,12 +9,13 @@ const connector = new Connector();
 preloader.disable();
 
 window.onload = () => {
-    document.getElementById('button-theme').onclick = async () => {
+    document.getElementById('button-theme').onclick = async function() {
         preloader.enable();
         const noun = await connector.getWord(SPEECH_PARTS.NOUN);
         const adj = await connector.getWord(SPEECH_PARTS.ADJ);
         preloader.disable();
         document.getElementById('answer').innerHTML = `${noun}<br/>${adj}`;
+        this.innerText = 'Попробовать еще!'
         console.log(noun + ' ' + adj);
     }
 }
