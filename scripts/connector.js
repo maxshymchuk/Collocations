@@ -1,4 +1,8 @@
-class Connector {
+import { WORDS, settings } from './config.js';
+import { APP_MODE } from './models.js';
+import { rand, getDictionaryUrl } from './utils.js';
+
+export default class Connector {
   constructor() {
     this.loaded = settings.mode === APP_MODE.DEV;
     this.words = [];
