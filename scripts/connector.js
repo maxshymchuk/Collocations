@@ -5,10 +5,6 @@ import { rand, getDictionaryUrl } from './utils.js';
 export default class Connector {
   constructor() {
     this.loaded = settings.mode === APP_MODE.DEV;
-    this.words = [];
-  }
-
-  init() {
     if (settings.mode === APP_MODE.PROD) {
       const req = new XMLHttpRequest();
       req.onload = () => {
@@ -19,7 +15,7 @@ export default class Connector {
           alert('Connector cannot load data');
         }
       }
-      req.open("GET", 'words.txt');
+      req.open("GET", 'assets/words.txt');
       req.send();
     }
     if (settings.mode === APP_MODE.DEV) {

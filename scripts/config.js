@@ -27,6 +27,14 @@ export const WORDS = [
   'мертвые'
 ]
 
+export const JOKES = [
+  'Спрашиваем у соседей',
+  'Ищем под подушкой',
+  'Думаем за вас',
+  'Заходим с тыла',
+  'Читаем в интернете'
+]
+
 export const TOKENS = [
   'dict.1.1.20200704T213006Z.cb2d5e00d0e31eed.3cd15300cbbd10dfa117c1044cf4d651bdf0d776',
   'dict.1.1.20200704T213003Z.76af1209ced5b5ec.aacc04241ff0c42bfcc2062557567f0f96c9b6a4',
