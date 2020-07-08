@@ -1,39 +1,60 @@
 class Connector {
   constructor() {
-    this.loaded = false;
-    this.connector = new XMLHttpRequest();
-    this.connector.onload = () => {
-      if (this.connector.status != 200) {
-        alert('Error');
-      } else {
-        this.response = this.connector.response;
-        this.loaded = true;
-      }
-    }
+    this.loaded = settings.mode === APP_MODE.DEV;
+    this.words = [];
   }
 
   init() {
-    this.connector.open("GET", 'words.txt');
-    this.connector.send();
-    const timer = setInterval(() => {
-      if (this.response) {
-        this.words = this.response;
-        clearInterval(timer);
+    if (settings.mode === APP_MODE.PROD) {
+      const req = new XMLHttpRequest();
+      req.onload = () => {
+        this.words = req.response;
+        this.loaded = true;
       }
-    }, 100);
+      req.open("GET", 'words.txt');
+      req.send();
+    }
+    if (settings.mode === APP_MODE.DEV) {
+      this.words = WORDS;
+    }
   }
 
-  getWord(word) {
-    if (typeof word === 'string') {
-      req.open("GET", getDictionaryUrl(word));
-      req.send();
+  getDescription(word) {
+    return new Promise((resolve, reject) => {
+      if (typeof word === 'string') {
+        const req = new XMLHttpRequest();
+        req.open("GET", getDictionaryUrl(word));
+        req.onload = function() {
+          if (this.status >= 200 && this.status < 300) {
+            resolve(req.response);
+          } else {
+            reject({
+              status: this.status,
+              statusText: req.statusText
+            });
+          }
+        }
+        req.send();
+      }
+    });
+  }
+
+  async getWord(part) {
+    let isFound = false;
+    while (!isFound) {
+      const response = await this.getDescription(this.random());
+      const word = JSON.parse(response);
+      if (word['def'].length && word['def'][0]['pos'] === part) {
+        isFound = true;
+        return word['def'][0]['text'];
+      }
     }
   }
 
   random() {
     if (this.words) {
-      const list = this.words.split('\r\n');
-      return list[rand(0, list.length - 1)];
+      const list = settings.mode === APP_MODE.PROD ? this.words.split('\r\n') : this.words;
+      return list[rand(0, list.length)];
     }
   }
 }

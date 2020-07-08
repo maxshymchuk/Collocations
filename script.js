@@ -1,3 +1,7 @@
+const settings = {
+    mode: APP_MODE.DEV
+}
+
 const connector = new Connector();
 
 connector.init();
@@ -12,8 +16,10 @@ function disablePreloader() {
 }
 
 window.onload = () => {
-    document.getElementById('update').onclick = () => {
-        console.log(connector.random());
+    document.getElementById('update').onclick = async () => {
+        const noun = await connector.getWord(SPEECH_PARTS.NOUN);
+        const adj = await connector.getWord(SPEECH_PARTS.ADJ);
+        console.log(noun + ' ' + adj);
     }
 }
 
@@ -21,6 +27,6 @@ function rand(a, b) {
     return Math.floor(Math.random() * b) + a;
 }
 
-function getDictionaryUrl(word, token = tokens[0]) {
+function getDictionaryUrl(word, token = TOKENS[0]) {
     return `https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=${token}&lang=ru-ru&text=${word}`;
 }
