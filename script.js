@@ -1,5 +1,5 @@
 const settings = {
-    mode: APP_MODE.DEV
+    mode: APP_MODE.PROD
 }
 
 const connector = new Connector();
