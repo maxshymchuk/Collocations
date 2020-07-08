@@ -14,6 +14,7 @@ window.onload = () => {
         const noun = await connector.getWord(SPEECH_PARTS.NOUN);
         const adj = await connector.getWord(SPEECH_PARTS.ADJ);
         preloader.disable();
+        document.getElementById('answer').innerHTML = `${noun}<br/>${adj}`;
         console.log(noun + ' ' + adj);
     }
 }

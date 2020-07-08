@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Тематичка</title>
   <link href="style.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/favicon.ico"/>
   <script src="scripts/collocations.js" type="module"></script>
 </head>
 <body>
-  <div class="preloader" id="preloader"></div>
-  <button id="button-theme">Получить тему!</button>
+  <div class="preloader" id="preloader">
+    <img class="preloader-image" src="assets/logo.svg" />
+    <span class="preloader-joke" id="preloader-joke"></span>
+  </div>
+  <span class="answer" id="answer"></span>
+  <button class="button-theme" id="button-theme">Получить тему!</button>
 </body>
 </html>

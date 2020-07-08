@@ -25,33 +25,43 @@ export default class Connector {
 
   getDescription(word) {
     return new Promise((resolve, reject) => {
-      if (typeof word === 'string') {
-        const req = new XMLHttpRequest();
-        req.open("GET", getDictionaryUrl(word));
-        req.onload = () => {
-          if (req.status === 200) {
-            resolve(req.response);
-          } else {
-            reject({
-              status: req.status,
-              statusText: req.statusText
-            });
+      if (settings.mode === APP_MODE.PROD) {
+        if (typeof word === 'string') {
+          const req = new XMLHttpRequest();
+          req.open("GET", getDictionaryUrl(word));
+          req.onload = () => {
+            if (req.status === 200) {
+              resolve(req.response);
+            } else {
+              reject({
+                status: req.status,
+                statusText: req.statusText
+              });
+            }
           }
+          req.send();
         }
-        req.send();
+      }
+      if (settings.mode === APP_MODE.DEV) {
+        resolve(this.words[rand(0, this.words.length)]);
       }
     });
   }
 
   async getWord(part) {
-    let isFound = false;
-    while (!isFound) {
-      const response = await this.getDescription(this.random());
-      const word = JSON.parse(response);
-      if (word['def'].length && word['def'][0]['pos'] === part) {
-        isFound = true;
-        return word['def'][0]['text'];
+    if (settings.mode === APP_MODE.PROD) {
+      let isFound = false;
+      while (!isFound) {
+        const response = await this.getDescription(this.random());
+        const word = JSON.parse(response);
+        if (word['def'].length && word['def'][0]['pos'] === part) {
+          isFound = true;
+          return word['def'][0]['text'];
+        }
       }
+    }
+    if (settings.mode === APP_MODE.DEV) {
+      return await this.getDescription();
     }
   }
 

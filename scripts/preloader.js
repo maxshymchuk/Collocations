@@ -4,7 +4,8 @@ import { rand } from './utils.js';
 
 export default class Preloader {
   constructor() {
-    this.instance = document.getElementById('preloader');
+    this.preloader = document.getElementById('preloader');
+    this.preloaderText = document.getElementById('preloader-joke');
     if (settings.mode === APP_MODE.PROD) {
       const req = new XMLHttpRequest();
       req.onload = () => {
@@ -27,17 +28,17 @@ export default class Preloader {
   }
 
   enable() {
-    this.instance.classList.remove('invisible');
+    this.preloader.classList.remove('invisible');
     if (this.jokes) {
-      this.instance.innerText = this.getJoke();
+      this.preloaderText.innerText = this.getJoke();
       this.timer = setInterval(() => {
-        this.instance.innerText = this.getJoke();
+        this.preloaderText.innerText = this.getJoke();
       }, 3000)
     }
   }
 
   disable() {
-    this.instance.classList.add('invisible');
+    this.preloader.classList.add('invisible');
     clearInterval(this.timer);
   }
 }
