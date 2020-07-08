@@ -1,11 +1,13 @@
-const preloader = document.getElementById('preloader');
+export default class Preloader {
+  constructor() {
+    this.instance = document.getElementById('preloader');
+  }
 
-export function setPreloader(flag) {
-  preloader.classList.remove('invisible');
-  const timer = setInterval(() => {
-    if (flag) {
-      preloader.classList.add('invisible');
-      clearInterval(timer);
-    }
-  }, 500);
+  enable() {
+    this.instance.classList.remove('invisible');
+  }
+
+  disable() {
+    this.instance.classList.add('invisible');
+  }
 }

@@ -1,7 +1,7 @@
 import { APP_MODE } from './models.js';
 
 export const settings = {
-  mode: APP_MODE.DEV
+  mode: APP_MODE.PROD
 }
 
 export const WORDS = [

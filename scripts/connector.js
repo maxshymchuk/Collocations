@@ -12,8 +12,12 @@ export default class Connector {
     if (settings.mode === APP_MODE.PROD) {
       const req = new XMLHttpRequest();
       req.onload = () => {
-        this.words = req.response;
-        this.loaded = true;
+        if (req.status === 200) {
+          this.words = req.response;
+          this.loaded = true;
+        } else {
+          alert('Connector cannot load data');
+        }
       }
       req.open("GET", 'words.txt');
       req.send();
@@ -28,12 +32,12 @@ export default class Connector {
       if (typeof word === 'string') {
         const req = new XMLHttpRequest();
         req.open("GET", getDictionaryUrl(word));
-        req.onload = function() {
-          if (this.status >= 200 && this.status < 300) {
+        req.onload = () => {
+          if (req.status === 200) {
             resolve(req.response);
           } else {
             reject({
-              status: this.status,
+              status: req.status,
               statusText: req.statusText
             });
           }
