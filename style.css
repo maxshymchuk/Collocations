@@ -1,5 +1,10 @@
+:root {
+  --vh: 1vh;
+  --preloader-time: '500ms';
+}
+
 * {
-  font-family: Georgia;
+  font-family: Georgia, "Times New Roman";
   font-size: 20px;
   cursor: default;
   user-select: none;
@@ -9,6 +14,7 @@ body {
   margin: 0;
   display: flex;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -46,7 +52,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #FFF;
-  transition: 1s;
+  transition: var(--preloader-time);
 }
 
 .preloader-image {
@@ -69,7 +75,7 @@ body {
 	cursor: pointer;
 	padding: 6px 24px;
 	text-decoration: none;
-	text-shadow: 0px 1px 0px #ffffff;
+	text-shadow: 0 1px 0 #ffffff;
 }
 
 .button-theme:hover {
@@ -106,6 +112,6 @@ body {
     transform: translate(0, 0) rotate(22.5deg);
   }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(0);
   }
 }

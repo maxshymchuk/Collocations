@@ -6,6 +6,9 @@ export default class Preloader {
   constructor() {
     this.preloader = document.getElementById('preloader');
     this.preloaderText = document.getElementById('preloader-joke');
+    if (settings.mode === APP_MODE.DEV) {
+      this.jokes = JOKES;
+    }
     if (settings.mode === APP_MODE.PROD) {
       const req = new XMLHttpRequest();
       req.onload = () => {
@@ -18,27 +21,26 @@ export default class Preloader {
       req.open("GET", 'assets/preloader.txt', false);
       req.send();
     }
-    if (settings.mode === APP_MODE.DEV) {
-      this.jokes = JOKES;
-    }
   }
 
   getJoke() {
     return `${this.jokes[rand(0, this.jokes.length)]}...`;
   }
 
-  enable() {
+  enable(withJoke = true) {
     this.preloader.classList.remove('invisible');
-    if (this.jokes) {
-      this.preloaderText.innerText = this.getJoke();
-      this.timer = setInterval(() => {
-        this.preloaderText.innerText = this.getJoke();
-      }, 3000)
+    if (withJoke && this.jokes) {
+      this.preloaderText.innerHTML = this.getJoke();
+      this.jokeTimer = setInterval(() => {
+        this.preloaderText.innerHTML = this.getJoke();
+      }, settings.jokeSwitchTime);
     }
   }
 
   disable() {
-    this.preloader.classList.add('invisible');
-    clearInterval(this.timer);
+    setTimeout(() => {
+      this.preloader.classList.add('invisible');
+      clearInterval(this.jokeTimer);
+    }, settings.preloaderMinTime);
   }
 }

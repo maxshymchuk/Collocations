@@ -1,7 +1,9 @@
 import { APP_MODE } from './models.js';
 
 export const settings = {
-  mode: APP_MODE.PROD
+  mode: APP_MODE.PROD,
+  preloaderMinTime: 1000,
+  jokeSwitchTime: 5000
 }
 
 export const WORDS = [
