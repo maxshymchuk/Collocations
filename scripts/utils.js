@@ -1,5 +1,5 @@
 export function rand(a, b) {
-  return Math.floor(Math.random() * b) + a;
+  return Math.floor(Math.random() * (b - a)) + a;
 }
 
 export function get(url) {

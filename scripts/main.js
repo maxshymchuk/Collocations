@@ -23,7 +23,7 @@ window.onload = () => {
     const timer = setTimeout(() => {
       buttonDom.innerHTML = prevValue;
       clearTimeout(timer);
-    }, 2000);
+    }, config.copyTextMinTime);
   }
   buttonDom.onclick = async function() {
     const collocation = await connector.getCollocation();
@@ -31,7 +31,7 @@ window.onload = () => {
     const noun = collocation.noun.toLowerCase();
     preloader.show(() => {
       this.innerText = 'Попробовать еще!'
-      answerDom.innerHTML = `${adjective}&nbsp;</br>${noun}`;
+      answerDom.innerHTML = `${adjective}&nbsp;</br>${noun}&nbsp;`;
     });
   }
 }
