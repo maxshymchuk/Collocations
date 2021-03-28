@@ -19,6 +19,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  user-select: text;
 }
 
 footer {
@@ -47,7 +48,8 @@ footer {
   text-align: center;
   font-size: 30px;
   margin: 20px 0;
-  user-select: auto;
+  user-select: text;
+  cursor: pointer;
 }
 
 .preloader {
@@ -77,6 +79,8 @@ footer {
 }
 
 .button-theme {
+  width: 100%;
+  max-width: 250px;
 	background-color: #ffffff;
 	border-radius: 6px;
 	border: 1px solid #dcdcdc;
