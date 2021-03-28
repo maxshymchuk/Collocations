@@ -31,7 +31,8 @@ export default class Collocator {
       if (this.isNeutral()) {
         return endings[1];
       }
-      return this.lastLetter(word) === 'к' ? 'ий' : 'ый';
+      const loudEndings = ['к', 'щ', 'ш', 'г'];
+      return loudEndings.includes(this.lastLetter(word)) ? 'ий' : 'ый';
     } else {
       return endings[0]
     }
