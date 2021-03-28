@@ -21,6 +21,15 @@ body {
   overflow: hidden;
 }
 
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  padding: 30px 10px;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
 .title {
   position: absolute;
   top: 0;
@@ -29,7 +38,7 @@ body {
 }
 
 @media screen and (max-height: 400px) {
-  .title {
+  .title, footer {
     display: none;
   }
 }
